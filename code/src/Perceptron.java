@@ -60,15 +60,18 @@ public class Perceptron extends IncrementalLearner<Double> {
     // compute output of current model
     double output = makePrediction(example.attributeValues);
 
-    // transform class value in proper input for perceptron
+    // transform class value in proper value for perceptron
     double expected = example.classValue == 0 ? -1 : 1;
 
+    // calculate error
+    double error = (output - expected);
+
     // calculate gradients for bias (bias acts as an input of 1)
-    gradients[0] = (expected - output) * 1;
+    gradients[0] = -error * 1;
 
     // calculate the gradients for weights
     for (int i = 1; i < gradients.length; i++){
-      gradients[i] = (expected - output) * example.attributeValues[i - 1];
+      gradients[i] = -error * example.attributeValues[i - 1];
     }
     return gradients;
   }
@@ -120,7 +123,7 @@ public class Perceptron extends IncrementalLearner<Double> {
   public void writeModel(String path) throws IOException {
 
     /* FILL IN HERE */
-    File modelFile = new File("code/" + path);
+    File modelFile = new File(path);
     modelFile.createNewFile();
     FileWriter writer = new FileWriter(modelFile);
 
@@ -152,8 +155,7 @@ public class Perceptron extends IncrementalLearner<Double> {
     super.readModel(path, nbExamplesProcessed);
 
     /* FILL IN HERE */
-    // todo: code/ aanpassen
-    File modelFile = new File("code/" + path);
+    File modelFile = new File(path);
     Scanner reader = new Scanner(modelFile);
 
 

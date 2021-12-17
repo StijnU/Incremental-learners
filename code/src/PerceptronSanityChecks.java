@@ -60,8 +60,8 @@ public class PerceptronSanityChecks {
     learner.writeModel(path1);
     learner2.writeModel(path2);
 
-    BufferedReader reader1 = new BufferedReader(new FileReader("code/" + path1));
-    BufferedReader reader2 = new BufferedReader(new FileReader("code/" + path2));
+    BufferedReader reader1 = new BufferedReader(new FileReader(path1));
+    BufferedReader reader2 = new BufferedReader(new FileReader(path2));
     String[] splitLine1 = reader1.readLine().split(" ");
     String[] splitLine2 = reader2.readLine().split(" ");
     for (int i = 0; i <= 3; i++) {

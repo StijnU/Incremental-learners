@@ -59,8 +59,8 @@ public class VfdtSanityChecks {
     learner.writeModel(path1);
     learner2.writeModel(path2);
 
-    BufferedReader reader1 = new BufferedReader(new FileReader("code/" + path1));
-    BufferedReader reader2 = new BufferedReader(new FileReader("code/" + path2));
+    BufferedReader reader1 = new BufferedReader(new FileReader(path1));
+    BufferedReader reader2 = new BufferedReader(new FileReader(path2));
     boolean hasNext = true;
     while (hasNext) {
       String line1 = reader1.readLine();

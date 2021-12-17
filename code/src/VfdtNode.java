@@ -18,9 +18,11 @@ public class VfdtNode {
 
   private int[][][] nijk; /* instance counts (see paper) */
 
+  /* FILL IN HERE */
+
   private int id; /* only used for writing models */
 
-  /* FILL IN HERE */
+  private int nbExamples;
 
   /**
    * Create and initialize a leaf node.
@@ -58,31 +60,20 @@ public class VfdtNode {
    * Add and example to the node
    */
   public void addExample(Example<Integer> example) {
-    boolean added = false;
-    // check if instance already in nijk
     for (int splitFeature : possibleSplitFeatures){
-      try{
-        nijk[splitFeature][example.attributeValues[splitFeature]][example.classValue] += 1;
-      }
-      catch (Exception e){
-        // not in nijk thus add it, but this shouldnt occur todo: have to change nijk implementation
-      }
+      nijk[splitFeature][example.attributeValues[splitFeature]][example.classValue] += 1;
     }
+    nbExamples += 1;
   }
 
-  public int countInstances(int splitFeature){
-    int totalCount = 0;
-    for (int[] counts : nijk[splitFeature]){
-      totalCount += counts[0] + counts[1];
-    }
-    return totalCount;
+  public int getNbExamples(){
+    return nbExamples;
   }
 
   /**
    * Split on feature value
    */
   public void split(int splitFeature, int[] nbFeatureValues){
-    splitFeature = splitFeature;
     ArrayList<VfdtNode> childs = new ArrayList<VfdtNode>();
 
     // create new possible split features list

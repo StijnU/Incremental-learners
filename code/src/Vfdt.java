@@ -59,7 +59,7 @@ public class Vfdt extends IncrementalLearner<Integer> {
       // first check if leaf node has enough instances
       HashMap<Integer, Double> igList = new HashMap<Integer, Double>();
       for (int splitFeature : leaf.getPossibleSplitFeatures()) {
-        if (leaf.countInstances(splitFeature) >= nmin){
+        if (leaf.getNbExamples() >= nmin){
             try {
               double ig = leaf.splitEval(splitFeature);
               igList.put(splitFeature, ig);
@@ -70,6 +70,10 @@ public class Vfdt extends IncrementalLearner<Integer> {
       }
       double highestIg = 0;
       int bestSplitFeature = -1;
+
+      double secondHighestIg = 0;
+      int secondBestSplitFeature = -1;
+
       for (int splitFeature : igList.keySet()) {
 
         // calculate seen instances of variable (splitfeature) X
@@ -78,15 +82,30 @@ public class Vfdt extends IncrementalLearner<Integer> {
           seen += seenCounts[0] + seenCounts[1];
         }
         double currIg = igList.get(splitFeature);
-        double root = ((nbFeatureValues[splitFeature] * nbFeatureValues[splitFeature]) * Math.log(2 / delta)) / (2 * seen);
-        double hoeffding = Math.sqrt(root);
-        if (currIg > highestIg && currIg > hoeffding) {
+
+        if (currIg > highestIg) {
+          secondHighestIg = highestIg;
+          secondBestSplitFeature = bestSplitFeature;
+
           highestIg = currIg;
           bestSplitFeature = splitFeature;
         }
+        else{
+          if(currIg > secondHighestIg){
+            secondHighestIg = currIg;
+            secondBestSplitFeature = splitFeature;
+          }
+        }
       }
-      if (bestSplitFeature != -1) {
-        leaf.split(bestSplitFeature, nbFeatureValues);
+
+      if (bestSplitFeature != -1 && secondBestSplitFeature != -1) {
+        double deltaG = highestIg - secondHighestIg;
+
+        double root = (1 * Math.log(2 / delta)) / (2 * leaf.getNbExamples());
+        double hoeffding = Math.sqrt(root);
+        if (deltaG  > hoeffding || deltaG < tau) {
+          leaf.split(bestSplitFeature, nbFeatureValues);
+        }
       }
     }
   }
@@ -119,7 +138,6 @@ public class Vfdt extends IncrementalLearner<Integer> {
     if (children == null) {
       return root;
     }
-    // todo: dont know how to find child with same attribute value as child so this might be wrong
     return findLeafNode(children[example.attributeValues[splitFeature]], example);
   }
 
@@ -149,21 +167,18 @@ public class Vfdt extends IncrementalLearner<Integer> {
     // find the leaf node of the example
 
     while (node.getChildren() != null){
-      VfdtNode[] childs = node.getChildren();
+      VfdtNode child = node.getChildren()[example[node.getSplitFeature()]];
 
       // check if there are enough instances in child node, if not use the parent node for prediction
-      int instanceCount = 0;
-      for (int splitFeature : childs[example[node.getSplitFeature()]].getPossibleSplitFeatures()) {
-        instanceCount += childs[example[node.getSplitFeature()]].countInstances(splitFeature);
-      }
+      int instanceCount = child.getNbExamples();
 
       // only use node for prediction if it has atleast nmin counts in total -> this doesnt mean has nmin examples
       // every parent node will have this because a split will only happen in a node when nmin examples are seen in this node
       // using nmin for this, could use other variable as this is not the true intention of nmin
-      if (instanceCount > nmin) {
+      if (instanceCount > 50) {
         // go to next node and iterate through while loop
         // while loop also stops when there are no childs thus if a child has enough instance counts -> child is used for prediction
-        node = childs[example[node.getSplitFeature()]];
+        node = child;
       }
       else {
         // stop going to next node because child has to few counts -> use parent node for prediction
@@ -226,7 +241,7 @@ public class Vfdt extends IncrementalLearner<Integer> {
   @Override
   public void writeModel(String path) throws IOException {
     VfdtNode node = this.root;
-    File modelFile = new File("code/" + path);
+    File modelFile = new File(path);
     modelFile.createNewFile();
     FileWriter writer = new FileWriter(modelFile);
 
@@ -275,7 +290,7 @@ public class Vfdt extends IncrementalLearner<Integer> {
     if (node.getChildren() == null){
       // leaf nodes have null children, leaf nodes are then printed 
       // the node ID is actually the total amount of nodes - the given nodeID this makes us print the nodes bottom up
-      writer.write(node.getId()+ " L pf:" + valueArrayToString(node.getPossibleSplitFeatures()) + " nijk:" + nijkToString(node.getInstances()) + "\n");
+      writer.write(node.getId()+ " L pf:" + intArrayToString(node.getPossibleSplitFeatures()) + " nijk:" + nijkToString(node.getInstances()) + "\n");
     }else{
       VfdtNode children[] = node.getChildren();
       for (VfdtNode child : children){
@@ -294,18 +309,14 @@ public class Vfdt extends IncrementalLearner<Integer> {
     }
   }
 
-  private String valueArrayToString(int[] arr){
-    char[] charArr = new char[arr.length * 2 + 2];
-    charArr[0] = '[';
-    int i = 1;
+  private String intArrayToString(int[] arr){
+    String str = "[";
     for (int val : arr){
-      // really vague line but this makes a char from an int
-      charArr[i] = (char)(val + '0');
-      charArr[i + 1] = ',';
-      i+=2;
+      String valStr = String.valueOf(val);
+      str += valStr;
+      str += ",";
     }
-    charArr[i] = ']';
-    return new String(charArr);
+    return str + "]";
   }
 
   private String nijkToString(int[][][] nijk){
@@ -364,7 +375,7 @@ public class Vfdt extends IncrementalLearner<Integer> {
     /* FILL IN HERE */
     // init empty tree
     try {
-      File modelFile = new File("code/" + path);
+      File modelFile = new File(path);
       Scanner reader = new Scanner(modelFile);
 
   
