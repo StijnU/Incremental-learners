@@ -1,4 +1,5 @@
-dataSubset/
-literature/
-Out/
-Code/bin/
+dataSubset/*
+literature/*
+Code/bin/*
+Code/out/*
+Out/*
