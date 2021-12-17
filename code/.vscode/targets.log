@@ -1,0 +1,471 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+
+# Make data base, printed on Wed Dec  8 00:16:58 2021
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# makefile (from `Makefile', line 16)
+DATAFOLDER = /cw/bdap/assignment1/data
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile (from `Makefile', line 36)
+PERIOD = 200000
+# makefile
+CURDIR := /Users/stijnuytterhoeven/School/5 2e Master/BDAP/project1/code
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 20)
+DATA_VFDT_CLEAN = ${DATAFOLDER}/clean/VFDT/
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+INFOPATH = /opt/homebrew/share/info:
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/1x/q20zwqk949z4v40cg4457rqc0000gn/T/vscode-ipc-730c1208-5e57-45d7-beca-fdbc78bc51ca.sock
+# environment
+VSCODE_CWD = /
+# environment
+PATH = /Users/stijnuytterhoeven/.cabal/bin:/Users/stijnuytterhoeven/.ghcup/bin:/Users/stijnuytterhoeven/miniforge3/condabin:/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+# makefile (from `Makefile', line 31)
+TAU = 0.05
+# makefile (from `Makefile', line 27)
+ETA = 0.000000001
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# makefile (from `Makefile', line 18)
+DATA_PC_CLEAN = ${DATAFOLDER}/clean/PC/
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.UxCXJDatYb/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+CONDA_EXE = /Users/stijnuytterhoeven/miniforge3/bin/conda
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /Users/stijnuytterhoeven/School/5 2e Master/BDAP/project1/code
+# environment
+HOMEBREW_CELLAR = /opt/homebrew/Cellar
+# makefile (from `Makefile', line 41)
+class_d = bin
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+MANPATH = /opt/local/share/man:/opt/homebrew/share/man::
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /Users/stijnuytterhoeven
+# default
+MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+# makefile (from `Makefile', line 43)
+source_d = src
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/stijnuytterhoeven/Library/Application Support/Code/CachedData/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247
+# makefile (from `Makefile', line 13)
+SMALL_DATA_VFDT = ${SMALL_DATAFOLDER}/dataSubset/vfdt/
+# environment
+LOGNAME = stijnuytterhoeven
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# makefile (from `Makefile', line 21)
+DATA_VFDT_NOISE = ${DATAFOLDER}/noisy/VFDT/
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# makefile (from `Makefile', line 47)
+JFLAGS = -g -d $(class_d) -sourcepath $(source_d) -cp .:$(lib_d)/* -Xlint:all
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from `Makefile', line 30)
+DELTA = 0.0000001
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# makefile (from `Makefile', line 32)
+NMIN = 200
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = stijnuytterhoeven
+# makefile
+.DEFAULT_GOAL := clean
+# makefile (from `Makefile', line 10)
+SMALL_DATAFOLDER = ..
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+CONDA_SHLVL = 0
+# default
+MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/1x/q20zwqk949z4v40cg4457rqc0000gn/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/stijnuytterhoeven/Library/Application Support/Code/1.62.3-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+HOMEBREW_SHELLENV_PREFIX = /opt/homebrew
+# makefile (from `Makefile', line 12)
+SMALL_DATA_PC = ${SMALL_DATAFOLDER}/dataSubset/pc/
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.13046587.13046593
+# environment
+HOMEBREW_PREFIX = /opt/homebrew
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from `Makefile', line 14)
+NB_FEATURE_VALUES_SMALL = ${SMALL_DATAFOLDER}/dataSubset/nbFeatureValues.csv
+# automatic
++F = $(notdir $+)
+# makefile (from `Makefile', line 19)
+DATA_PC_NOISE = ${DATAFOLDER}/noisy/PC/
+# environment
+HOMEBREW_REPOSITORY = /opt/homebrew
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# makefile (from `Makefile', line 23)
+NB_FEATURE_VALUES = ${DATAFOLDER}/nbFeatureValues.csv
+# environment
+CONDA_PYTHON_EXE = /Users/stijnuytterhoeven/miniforge3/bin/python
+# makefile (from `Makefile', line 35)
+OUT = out
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+_CE_M = 
+# environment
+MAKELEVEL := 0
+# makefile (from `Makefile', line 46)
+JAVAC = javac
+# environment
+LANG = C
+# environment
+VSCODE_PID = 31088
+# makefile (from `Makefile', line 42)
+lib_d = lib
+# environment
+_CE_CONDA = 
+# variable set hash-table stats:
+# Load=93/1024=9%, Rehash=0, Collisions=2/151=1%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777230, inode 9686715): 11 files, no impossibilities.
+
+# 11 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+bin/VfdtSanityChecks.class: src/VfdtSanityChecks.java bin/Vfdt.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 74):
+	@$(JAVAC) $(JFLAGS) $<
+	
+
+# Not a target:
+all:
+#  Command-line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/Perceptron.java:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/VfdtNode.java:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-10-26 09:15:04
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+pc_clean: bin/Perceptron.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 95):
+	@echo "training perceptron on all data"
+	rm -f $(OUT).clean.pc.acc ;
+	rm -f $(OUT).clean.pc.prob;
+	time java -Xmx4g -cp .:$(class_d) Perceptron $(ETA) $(DATA_PC_CLEAN) $(OUT).clean $(PERIOD)
+	
+
+# Not a target:
+src/Example.java:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+check_vfdt: bin/VfdtSanityChecks.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 83):
+	@echo "Checking vfdt with sanity tests";
+	java -cp .:$(class_d):$(lib_d)/* org.junit.runner.JUnitCore VfdtSanityChecks
+	
+
+# Not a target:
+src/IncrementalLearner.java:
+ 
+make: *** No rule to make target `all'.  Stop.
+ 
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/PerceptronSanityChecks.java:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/Vfdt.java:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+vfdt_noise: bin/Vfdt.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 119):
+	@echo "Testing VFDT on subset of data"
+	rm -f $(OUT).noise.vfdt.acc ;
+	rm -f $(OUT).noise.vfdt.prob;
+	time java -Xmx4g -cp .:$(class_d) Vfdt $(DELTA) $(TAU) $(NMIN) $(DATA_VFDT_NOISE) $(NB_FEATURE_VALUES) $(OUT).noise $(PERIOD)
+	
+
+bin/Perceptron.class: src/Perceptron.java bin/Data.class bin/Example.class bin/IncrementalLearner.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 62):
+	@$(JAVAC) $(JFLAGS) $<
+	
+
+vfdt_small: bin/Vfdt.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 107):
+	@echo "Testing VFDT on subset of clean data"
+	rm -f small.vfdt.acc ;
+	rm -f small.vfdt.prob;
+	time java -cp .:$(class_d) Vfdt $(DELTA) $(TAU) $(NMIN) $(SMALL_DATA_VFDT) $(NB_FEATURE_VALUES_SMALL) small 1000 -writeOutAllPredictions
+	
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+bin/VfdtNode.class: src/VfdtNode.java
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 65):
+	@$(JAVAC) $(JFLAGS) $<
+	
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 50):
+	rm -rf $(class_d)/*
+	
+
+# Not a target:
+src/VfdtSanityChecks.java:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/Data.java:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+bin/Example.class: src/Example.java
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 53):
+	@$(JAVAC) $(JFLAGS) $<
+	
+
+bin/IncrementalLearner.class: src/IncrementalLearner.java bin/Data.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 59):
+	@$(JAVAC) $(JFLAGS) $<
+	
+
+bin/PerceptronSanityChecks.class: src/PerceptronSanityChecks.java bin/Perceptron.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 71):
+	@$(JAVAC) $(JFLAGS) $<
+	
+
+bin/Vfdt.class: src/Vfdt.java bin/VfdtNode.class bin/Data.class bin/Example.class bin/IncrementalLearner.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 68):
+	@$(JAVAC) $(JFLAGS) $<
+	
+
+check_pc: bin/PerceptronSanityChecks.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 79):
+	@echo "Checking perceptron with sanity tests";
+	java -cp .:$(class_d):$(lib_d)/* org.junit.runner.JUnitCore PerceptronSanityChecks
+	
+
+pc_noise: bin/Perceptron.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 101):
+	@echo "training perceptron on all data"
+	rm -f $(OUT).noise.pc.acc ;
+	rm -f $(OUT).noise.pc.prob;
+	time java -Xmx4g -cp .:$(class_d) Perceptron $(ETA) $(DATA_PC_NOISE) $(OUT).noise $(PERIOD)
+	
+
+pc_small: bin/Perceptron.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 89):
+	@echo "Testing perceptron on subset of the clean data"
+	rm -f small.pc.acc ;
+	rm -f small.pc.prob;
+	time java -cp .:$(class_d) Perceptron $(ETA) $(SMALL_DATA_PC) small 1000 -writeOutAllPredictions
+	
+
+bin/Data.class: src/Data.java bin/Example.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 56):
+	@$(JAVAC) $(JFLAGS) $<
+	
+
+vfdt_clean: bin/Vfdt.class
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 113):
+	@echo "Testing VFDT on subset of data"
+	rm -f $(OUT).clean.vfdt.acc ;
+	rm -f $(OUT).clean.vfdt.prob;
+	time java -Xmx4g -cp .:$(class_d) Vfdt $(DELTA) $(TAU) $(NMIN) $(DATA_VFDT_CLEAN) $(NB_FEATURE_VALUES) $(OUT).clean $(PERIOD)
+	
+
+# files hash-table stats:
+# Load=29/1024=3%, Rehash=0, Collisions=2/68=3%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Wed Dec  8 00:16:58 2021
+
+ 

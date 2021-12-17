@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/stijnuytterhoeven/School/5 2e Master/BDAP/project1/code'
+rm -rf bin/*
+make: Leaving directory `/Users/stijnuytterhoeven/School/5 2e Master/BDAP/project1/code'
+ 
