@@ -3,3 +3,5 @@ literature/*
 code/bin/*
 code/out/*
 out/*
+out.*
+small.*
