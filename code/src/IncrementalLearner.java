@@ -107,7 +107,6 @@ public abstract class IncrementalLearner<T> {
     while (hasNext) {
       nbToTest = Math.min(reportingPeriod, nbToTest * 2);
       ArrayList<Example<T>> testExamples = new ArrayList<Example<T>>(nbToTest);
-
       // calculate accuracy with test examples
       i = 0;
       double accuracy = 0;
@@ -143,6 +142,7 @@ public abstract class IncrementalLearner<T> {
         update(example);
       }
       buffer = testExamples;
+
     }
     accuracyWriter.close();
   }

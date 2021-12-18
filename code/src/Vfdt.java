@@ -57,54 +57,44 @@ public class Vfdt extends IncrementalLearner<Integer> {
 
     for (VfdtNode leaf : leafNodes) {
       // first check if leaf node has enough instances
-      HashMap<Integer, Double> igList = new HashMap<Integer, Double>();
-      for (int splitFeature : leaf.getPossibleSplitFeatures()) {
-        if (leaf.getNbExamples() >= nmin){
-            try {
-              double ig = leaf.splitEval(splitFeature);
-              igList.put(splitFeature, ig);
-            } catch (NullPointerException e) {
-              // no instances found
+      if (leaf.getNbExamples() >= nmin) {
+        HashMap<Integer, Double> igList = new HashMap<Integer, Double>();
+        for (int splitFeature : leaf.getPossibleSplitFeatures()) {
+          double ig = leaf.splitEval(splitFeature);
+          igList.put(splitFeature, ig);
+        }
+
+        double highestIg = 0;
+        int bestSplitFeature = -1;
+
+        double secondHighestIg = 0;
+        int secondBestSplitFeature = -1;
+
+        for (int splitFeature : igList.keySet()) {
+          double currIg = igList.get(splitFeature);
+
+          if (currIg > highestIg) {
+            secondHighestIg = highestIg;
+            secondBestSplitFeature = bestSplitFeature;
+
+            highestIg = currIg;
+            bestSplitFeature = splitFeature;
+          } else {
+            if (currIg > secondHighestIg) {
+              secondHighestIg = currIg;
+              secondBestSplitFeature = splitFeature;
             }
           }
-      }
-      double highestIg = 0;
-      int bestSplitFeature = -1;
-
-      double secondHighestIg = 0;
-      int secondBestSplitFeature = -1;
-
-      for (int splitFeature : igList.keySet()) {
-
-        // calculate seen instances of variable (splitfeature) X
-        double seen = 0;
-        for (int[] seenCounts : leaf.getInstances()[splitFeature]) {
-          seen += seenCounts[0] + seenCounts[1];
         }
-        double currIg = igList.get(splitFeature);
 
-        if (currIg > highestIg) {
-          secondHighestIg = highestIg;
-          secondBestSplitFeature = bestSplitFeature;
+        if (bestSplitFeature != -1 && secondBestSplitFeature != -1) {
+          double deltaG = highestIg - secondHighestIg;
 
-          highestIg = currIg;
-          bestSplitFeature = splitFeature;
-        }
-        else{
-          if(currIg > secondHighestIg){
-            secondHighestIg = currIg;
-            secondBestSplitFeature = splitFeature;
+          double root = (1 * Math.log(2 / delta)) / (2 * leaf.getNbExamples());
+          double hoeffding = Math.sqrt(root);
+          if (deltaG > hoeffding || deltaG < tau) {
+            leaf.split(bestSplitFeature, nbFeatureValues);
           }
-        }
-      }
-
-      if (bestSplitFeature != -1 && secondBestSplitFeature != -1) {
-        double deltaG = highestIg - secondHighestIg;
-
-        double root = (1 * Math.log(2 / delta)) / (2 * leaf.getNbExamples());
-        double hoeffding = Math.sqrt(root);
-        if (deltaG  > hoeffding || deltaG < tau) {
-          leaf.split(bestSplitFeature, nbFeatureValues);
         }
       }
     }
