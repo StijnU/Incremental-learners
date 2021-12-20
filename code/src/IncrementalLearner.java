@@ -95,6 +95,7 @@ public abstract class IncrementalLearner<T> {
     Iterator<Example<T>> iterator = data.iterator();
     ArrayList<Example<T>> buffer = new ArrayList<Example<T>>(nbToTest);
 
+
     // initialize buffer
     int i = 0;
     while (iterator.hasNext() && i < nbToTest) {
@@ -110,7 +111,6 @@ public abstract class IncrementalLearner<T> {
       // calculate accuracy with test examples
       i = 0;
       double accuracy = 0;
-
       while (hasNext && i < nbToTest) {
         i++;
         Example<T> example = iterator.next();

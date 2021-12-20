@@ -73,7 +73,7 @@ public class VfdtNode {
   /**
    * Split on feature value
    */
-  public void split(int splitFeature, int[] nbFeatureValues){
+  public VfdtNode[] split(int splitFeature, int[] nbFeatureValues){
     ArrayList<VfdtNode> childs = new ArrayList<VfdtNode>();
 
     // create new possible split features list
@@ -90,6 +90,7 @@ public class VfdtNode {
       childs.add(new VfdtNode(nbFeatureValues, newPossibleSplitFeatures));
     }
     addChildren(splitFeature, childs.toArray(new VfdtNode[nbFeatureValues[splitFeature]]));
+    return childs.toArray(new VfdtNode[nbFeatureValues[splitFeature]]);
   }
 
   /**

@@ -16,7 +16,10 @@ public class Vfdt extends IncrementalLearner<Integer> {
   private double tau;
   private double nmin;
 
+
   private VfdtNode root;
+  private ArrayList<VfdtNode> leaves;
+
 
   /**
    * Vfdt constructor
@@ -35,10 +38,15 @@ public class Vfdt extends IncrementalLearner<Integer> {
     this.tau = tau;
     this.nmin = nmin;
 
+
     nbExamplesProcessed = 0;
     int[] possibleFeatures = new int[nbFeatureValues.length];
     for (int i = 0; i < nbFeatureValues.length; i++) possibleFeatures[i] = i;
     this.root = new VfdtNode(nbFeatureValues, possibleFeatures);
+
+    // first there is only one leaf which is the root
+    this.leaves = new ArrayList<VfdtNode>();
+    this.leaves.add(root);
   }
 
   /**
@@ -53,17 +61,19 @@ public class Vfdt extends IncrementalLearner<Integer> {
     super.update(example);
     VfdtNode leafNode = findLeafNode(this.root, example);
     leafNode.addExample(example);
-    VfdtNode leafNodes[] = findAllLeafNodes(this.root);
 
-    for (VfdtNode leaf : leafNodes) {
+    ArrayList<VfdtNode> splittedLeaves = new ArrayList<VfdtNode>();
+    ArrayList<VfdtNode[]> newLeaves = new ArrayList<VfdtNode[]>();
+
+    for (VfdtNode leaf : leaves) {
       // first check if leaf node has enough instances
       if (leaf.getNbExamples() >= nmin) {
         HashMap<Integer, Double> igList = new HashMap<Integer, Double>();
+
         for (int splitFeature : leaf.getPossibleSplitFeatures()) {
           double ig = leaf.splitEval(splitFeature);
           igList.put(splitFeature, ig);
         }
-
         double highestIg = 0;
         int bestSplitFeature = -1;
 
@@ -86,20 +96,33 @@ public class Vfdt extends IncrementalLearner<Integer> {
             }
           }
         }
-
         if (bestSplitFeature != -1 && secondBestSplitFeature != -1) {
           double deltaG = highestIg - secondHighestIg;
 
           double root = (1 * Math.log(2 / delta)) / (2 * leaf.getNbExamples());
           double hoeffding = Math.sqrt(root);
           if (deltaG > hoeffding || deltaG < tau) {
-            leaf.split(bestSplitFeature, nbFeatureValues);
+            VfdtNode[] newLeavesArr = leaf.split(bestSplitFeature, nbFeatureValues);
+            newLeaves.add(newLeavesArr);
+            splittedLeaves.add(leaf);
           }
         }
       }
     }
+    updateLeaves(splittedLeaves, newLeaves);
   }
 
+
+  private void updateLeaves(ArrayList<VfdtNode> lastLeafs, ArrayList<VfdtNode[]> newLeavesList){
+    for (VfdtNode lastLeaf : lastLeafs) {
+      leaves.remove(leaves.indexOf(lastLeaf));
+    }
+    for (VfdtNode[] newLeaves : newLeavesList) {
+      for (VfdtNode newLeaf : newLeaves) {
+        leaves.add(newLeaf);
+      }
+    }
+  }
   /**
    *  Finds all leaf nodes
    */
@@ -667,10 +690,8 @@ public class Vfdt extends IncrementalLearner<Integer> {
 
       // initialize learner
       Vfdt vfdt = new Vfdt(nbFeatureValues, delta, tau, nmin);
-
       // generate output for the learning curve
       vfdt.makeLearningCurve(data, 0.5, out + ".vfdt", reportingPeriod, writeOutAllPredictions);
-
     } catch (IOException e) {
       System.err.println(e.toString());
     }
