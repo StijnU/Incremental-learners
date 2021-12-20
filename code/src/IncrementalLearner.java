@@ -11,6 +11,7 @@ import java.util.Iterator;
 public abstract class IncrementalLearner<T> {
 
   protected int nbExamplesProcessed;
+  double parameters[];
 
   /**
    * This method will update the parameters of you model using the given example.
@@ -85,8 +86,13 @@ public abstract class IncrementalLearner<T> {
       throws FileNotFoundException {
 
     System.out.println(out);
-    PrintWriter accuracyWriter = new PrintWriter(out + ".acc");
-    PrintWriter predictionWriter = writeOutAllPredictions ? new PrintWriter(out + ".probs") : null;
+    String parameterFileString = ".";
+    for (double parameter : parameters){
+      parameterFileString += String.valueOf(parameter);
+      parameterFileString += ".";
+    }
+    PrintWriter accuracyWriter = new PrintWriter(out + parameterFileString + "acc");
+    PrintWriter predictionWriter = writeOutAllPredictions ? new PrintWriter(out + parameterFileString + "probs") : null;
 
     int nbToTest = 10;
 

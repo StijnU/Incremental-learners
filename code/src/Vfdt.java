@@ -37,6 +37,7 @@ public class Vfdt extends IncrementalLearner<Integer> {
     this.delta = delta;
     this.tau = tau;
     this.nmin = nmin;
+    this.parameters = new double[]{delta, tau, nmin};
 
 
     nbExamplesProcessed = 0;
